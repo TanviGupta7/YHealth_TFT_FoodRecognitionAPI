@@ -1,113 +1,286 @@
-<<<<<<< HEAD
 # YHealth
 
-**by Think Future Technologies**
+<h1 align="center">YHealth</h1>
 
-Your Food & Nutrition Analyzer — upload a photo, get calories and macros instantly.
+<h4 align="center">by Think Future Technologies</h4>
 
-## Features
+<p align="center">
+  Your Food & Nutrition Analyzer
+</p>
 
-- Upload or camera capture (JPEG, PNG, WEBP)
-- Local ViT classifier (`nateraw/food`, Food-101) — works without API key
-- Optional HuggingFace router API fallback (`INFERENCE_MODE=auto|hf`)
-- Nutrition mapping for all 101 Food-101 classes + Indian/extra foods
-- Dark Streamlit UI with macro cards and JSON API
-- Docker Compose one-command deploy
+<p align="center">
+  Upload a meal image and get estimated calories, protein, carbs, and fat instantly.
+</p>
 
-## Quick Start (Docker)
+---
+
+# Overview
+
+YHealth is a Food Recognition and Nutrition Analysis application designed to identify meals from uploaded food images and estimate nutritional macros such as calories, protein, carbohydrates, and fat.
+
+The project combines:
+- HuggingFace Vision Transformer (Food-101)
+- FastAPI backend
+- Streamlit frontend
+- Dockerized deployment
+- Lightweight meal heuristics
+- Nutrition macro estimation
+
+The goal of the project is to create a practical and demo-friendly nutrition analysis system while maintaining a lightweight and efficient architecture.
+
+---
+
+# Features
+
+- Upload food images
+- Camera capture support
+- Vision-based food recognition
+- Nutrition macro estimation
+- Multi-item meal support
+- JSON API response
+- Streamlit dashboard UI
+- Docker deployment
+- Lightweight security protections
+- Clean and responsive interface
+
+---
+
+# Quick Start
+
+## Docker Setup
 
 ```bash
-cd food-ai
-cp .env.example .env
 docker compose up --build
 ```
 
-- **Frontend:** http://localhost:8501  
-- **API docs:** http://localhost:8000/docs  
+Frontend:
 
-First backend start may take 1–2 minutes while the model loads.
+```text
+http://localhost:8501
+```
 
-## Local Dev (no Docker)
+Backend API:
 
-**Backend**
+```text
+http://localhost:8000/docs
+```
+
+---
+
+# Local Development
+
+## Backend
+
 ```bash
 cd backend
 pip install -r requirements.txt
-set INFERENCE_MODE=local
-uvicorn main:app --reload --port 8000
+uvicorn main:app --reload
 ```
 
-**Frontend**
+## Frontend
+
 ```bash
 cd frontend
 pip install -r requirements.txt
-set API_URL=http://localhost:8000
 streamlit run app.py
 ```
 
-## Environment
+---
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `INFERENCE_MODE` | `local` | `local`, `hf`, or `auto` |
-| `HF_API_KEY` | — | Optional HF token for remote inference |
-| `API_URL` | `http://localhost:8000` | Backend URL for Streamlit |
-| `RATE_LIMIT` | `20` | Requests per IP per minute |
+# Application Screenshots
 
-## API
+## Main Interface
 
-### `POST /analyze`
+<p align="center">
+  <img src="assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png" width="220"/>
+</p>
 
-Multipart form field `file` (image).
+---
 
-### `GET /health`
+## Food Detection Example
 
-Returns model load status.
+<p align="center">
+  <img src="assets/screenshots/pizza%20img.jpg" width="220"/>
+</p>
 
-## Deploy
+---
 
-### Render
+# Working Demo Images
 
-Push to GitHub, connect repo, use `render.yaml` blueprint (two web services).
+These sample images can be used to test meal detection and nutrition analysis inside YHealth.
 
-Set `API_URL` on the frontend service to the backend public URL if not auto-linked.
+<p align="center">
+  <img src="assets/demo_images/d1.png" width="220"/>
+  <img src="assets/demo_images/d2.png" width="220"/>
+  <img src="assets/demo_images/d3.png" width="220"/>
+</p>
 
-### Railway
+<p align="center">
+  <img src="assets/demo_images/d4.png" width="220"/>
+  <img src="assets/demo_images/d5.png" width="220"/>
+  <img src="assets/demo_images/d6.png" width="220"/>
+</p>
 
-Deploy **two services** from the same repo:
+---
 
-1. **Backend** — root `railway.toml`, Dockerfile `backend/Dockerfile`
-2. **Frontend** — `frontend/railway.toml`, set `API_URL` to backend public URL
+---
 
-## Architecture
+# Demo Video
 
-```
+## Watch Application Demo
+
+[▶ Watch Demo Video](assets/videos/DemoAPP_FoodRecognitionAPI.mp4)
+
+---
+
+# How It Works
+
+1. User uploads or captures a food image  
+2. Image is sent to the FastAPI backend  
+3. HuggingFace ViT model performs food classification  
+4. Lightweight meal heuristics improve prediction quality  
+5. Nutrition macros are mapped from the nutrition database  
+6. Total calories, protein, carbs, and fat are calculated  
+7. Results are displayed in the Streamlit dashboard and JSON API response  
+
+---
+
+# Tech Stack
+
+| Layer | Technology |
+|---|---|
+| Backend | FastAPI |
+| Frontend | Streamlit |
+| AI Model | HuggingFace ViT (Food-101) |
+| Language | Python |
+| Containerization | Docker |
+| Deployment | Render / Railway |
+
+---
+
+# Security Features
+
+The project includes lightweight security protections suitable for demo and MVP environments.
+
+## Implemented Security Measures
+
+- Upload size limits
+- MIME validation
+- File type validation
+- Pillow image verification
+- Lightweight rate limiting
+- Security response headers
+- Sanitized rendering
+- Clean API error handling
+
+---
+
+# Project Structure
+
+```text
 food-ai/
 ├── backend/
-│   ├── main.py           # FastAPI routes
-│   ├── inference.py      # Local + HF classification
-│   ├── nutrition_data.py # Macro database
+│   ├── main.py
+│   ├── inference.py
+│   ├── meal_logic.py
+│   ├── nutrition_data.py
+│   ├── security.py
 │   └── Dockerfile
+│
 ├── frontend/
-│   └── app.py            # Streamlit UI
-└── docker-compose.yml
-
-## Screenshots
-
-### Paneer Butter Masala + Jeera Rice
-![Paneer Combo](assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png)
-
-### Pizza Detection
-![Pizza](assets/screenshots/pizza%20img.jpg)
-
-## Demo Video
-
-[Watch Demo Video](assets/videos/DemoAPP_FoodRecognitionAPI.mp4)
-
+│   ├── app.py
+│   └── streamlit_compat.py
+│
+├── assets/
+│   ├── screenshots/
+│   ├── demo_images/
+│   └── videos/
+│
+├── docker-compose.yml
+├── render.yaml
+├── railway.toml
+└── README.md
 ```
 
-Built with FastAPI · Streamlit · HuggingFace Transformers
-=======
-# YHealth_TFT_FoodRecognitionAPI
-Build a simple API/App where:    User uploads a food image  System detects food items  Returns macros in JSON format    {    "items": [      {        "name": "Paneer Butter Masala",        "quantity": "1 bowl",        "calories": 320,        "protein_g": 14,        "carbs_g": 18,        "fat_g": 22      }}
->>>>>>> c19b3d2674c70d2670f4a625c7554125c2a12237
+---
+
+# API Response Example
+
+```json
+{
+  "items": [
+    {
+      "name": "Paneer Butter Masala",
+      "quantity": "1 bowl",
+      "calories": 320,
+      "protein_g": 14,
+      "carbs_g": 18,
+      "fat_g": 22
+    },
+    {
+      "name": "Jeera Rice",
+      "quantity": "1 cup",
+      "calories": 210,
+      "protein_g": 4,
+      "carbs_g": 42,
+      "fat_g": 3
+    }
+  ],
+  "total_macros": {
+    "calories": 530,
+    "protein_g": 18,
+    "carbs_g": 60,
+    "fat_g": 25
+  }
+}
+```
+
+---
+
+# Deployment
+
+## Render
+
+Deploy using:
+- `render.yaml`
+- Separate frontend and backend services
+
+---
+
+## Railway
+
+Deploy:
+- Backend service
+- Frontend service
+
+Set:
+
+```text
+API_URL=<backend-public-url>
+```
+
+---
+
+# Notes
+
+This project uses the HuggingFace Food-101 model as the base classifier.
+
+Lightweight meal heuristics are added to improve practical food recognition and nutrition estimation without retraining large deep learning models.
+
+---
+
+# Built With
+
+- FastAPI
+- Streamlit
+- HuggingFace Transformers
+- Docker
+- Python
+
+---
+
+# Developed For
+
+## Think Future Technologies
+
+YHealth — Your Food & Nutrition Analyzer
