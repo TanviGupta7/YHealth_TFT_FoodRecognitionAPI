@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from inference import HF_MODEL, classify_food
+from meal_logic import enhance_predictions, get_meal_insight
 from middleware import SecurityHeadersMiddleware
 from nutrition_data import calculate_total_macros, get_nutrition, resolve_food
 from security import validate_image_upload
@@ -35,9 +36,9 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(
-    title="YHealth by TFT API",
-    description="AI-Powered Food and Nutrition Analyzer",
-    version="2.0.0",
+    title="YHealth API",
+    description="YHealth by Think Future Technologies — Food & Nutrition Analyzer",
+    version="2.1.0",
     lifespan=lifespan,
 )
 app.add_middleware(SecurityHeadersMiddleware)
@@ -108,7 +109,12 @@ def build_items(predictions: list[dict]) -> tuple[list[dict], list[dict]]:
 
 @app.get("/")
 def root():
-    return {"status": "ok", "app": "YHealth by TFT", "message": "Nutrition API is running"}
+    return {
+        "status": "ok",
+        "app": "YHealth",
+        "company": "Think Future Technologies",
+        "message": "Nutrition API is running",
+    }
 
 
 @app.get("/health")
@@ -117,7 +123,8 @@ def health():
 
     return {
         "status": "healthy",
-        "app": "YHealth by TFT",
+        "app": "YHealth",
+        "company": "Think Future Technologies",
         "model": HF_MODEL,
         "inference_mode": os.getenv("INFERENCE_MODE", "local"),
         "local_model_loaded": _classifier is not None,
@@ -139,7 +146,7 @@ async def analyze_food(request: Request, file: UploadFile = File(...)):
     )
 
     try:
-        predictions = classify_food(contents)
+        predictions = enhance_predictions(classify_food(contents), image_bytes=contents)
         items, confidence_meta = build_items(predictions)
     except RuntimeError as exc:
         logger.error("Inference failed: %s", exc)
@@ -154,8 +161,10 @@ async def analyze_food(request: Request, file: UploadFile = File(...)):
             detail="No food items detected with sufficient confidence.",
         )
 
+    total_macros = calculate_total_macros(items)
     return {
         "items": items,
-        "total_macros": calculate_total_macros(items),
+        "total_macros": total_macros,
         "confidence_scores": confidence_meta,
+        "meal_insight": get_meal_insight(total_macros),
     }

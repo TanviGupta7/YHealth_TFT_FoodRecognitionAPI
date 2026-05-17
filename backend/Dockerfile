@@ -10,7 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY nutrition_data.py inference.py security.py middleware.py main.py .
+COPY nutrition_data.py inference.py security.py middleware.py meal_logic.py main.py .
 
 # Pre-download model so first request is fast
 RUN python -c "from transformers import pipeline; pipeline('image-classification', model='nateraw/food', device=-1)"

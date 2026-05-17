@@ -13,7 +13,7 @@ HF_API_KEY = os.getenv("HF_API_KEY", "")
 HF_MODEL = os.getenv("HF_MODEL", "nateraw/food")
 INFERENCE_MODE = os.getenv("INFERENCE_MODE", "local").lower()  # local | hf | auto
 MIN_CONFIDENCE = float(os.getenv("MIN_CONFIDENCE", "0.05"))
-TOP_K = int(os.getenv("TOP_K", "5"))
+TOP_K = int(os.getenv("TOP_K", "8"))
 
 HF_ROUTER_URL = f"https://router.huggingface.co/hf-inference/models/{HF_MODEL}"
 
