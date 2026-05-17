@@ -1,0 +1,36 @@
+services:
+  backend:
+    build: ./backend
+    ports:
+      - "8000:8000"
+    environment:
+      - HF_API_KEY=${HF_API_KEY:-}
+      - INFERENCE_MODE=${INFERENCE_MODE:-local}
+      - RATE_LIMIT=${RATE_LIMIT:-20}
+    env_file:
+      - path: .env
+        required: false
+    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "python",
+          "-c",
+          "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')",
+        ]
+      interval: 30s
+      timeout: 10s
+      start_period: 120s
+      retries: 5
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "8501:8501"
+    environment:
+      - API_URL=http://backend:8000
+    depends_on:
+      backend:
+        condition: service_healthy
+    restart: unless-stopped

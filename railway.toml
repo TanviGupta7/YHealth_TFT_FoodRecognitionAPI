@@ -1,0 +1,11 @@
+# Railway monorepo: deploy backend and frontend as separate services from repo root.
+# Set API_URL on the frontend service to the backend public URL.
+
+[build]
+builder = "DOCKERFILE"
+dockerfilePath = "backend/Dockerfile"
+
+[deploy]
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"

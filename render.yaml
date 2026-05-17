@@ -1,0 +1,29 @@
+# Render Blueprint: https://render.com/docs/blueprint-spec
+services:
+  - type: web
+    name: food-ai-backend
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    plan: free
+    healthCheckPath: /health
+    envVars:
+      - key: INFERENCE_MODE
+        value: local
+      - key: HF_API_KEY
+        sync: false
+      - key: PORT
+        value: "8000"
+
+  - type: web
+    name: food-ai-frontend
+    runtime: docker
+    dockerfilePath: ./frontend/Dockerfile
+    dockerContext: ./frontend
+    plan: free
+    envVars:
+      - key: API_URL
+        fromService:
+          name: food-ai-backend
+          type: web
+          envVarKey: RENDER_EXTERNAL_URL
