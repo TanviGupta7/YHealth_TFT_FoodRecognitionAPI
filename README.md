@@ -91,6 +91,19 @@ food-ai/
 ├── frontend/
 │   └── app.py            # Streamlit UI
 └── docker-compose.yml
+
+## Screenshots
+
+### Paneer Butter Masala + Jeera Rice
+![Paneer Combo](assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png)
+
+### Pizza Detection
+![Pizza](assets/screenshots/pizza%20img.jpg)
+
+## Demo Video
+
+[Watch Demo Video](assets/videos/DemoAPP_FoodRecognitionAPI.mp4)
+
 ```
 
 Built with FastAPI · Streamlit · HuggingFace Transformers
