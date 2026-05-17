@@ -93,7 +93,7 @@ streamlit run app.py
 ## Main Interface
 
 <p align="center">
-  <img src="assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png" width="850"/>
+  <img src="assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png" width="250"/>
 </p>
 
 ---
@@ -101,7 +101,7 @@ streamlit run app.py
 ## Food Detection Example
 
 <p align="center">
-  <img src="assets/screenshots/pizza%20img.jpg" width="650"/>
+  <img src="assets/screenshots/pizza%20img.jpg" width="250"/>
 </p>
 
 ---
@@ -111,15 +111,15 @@ streamlit run app.py
 These sample images can be used to test meal detection and nutrition analysis inside YHealth.
 
 <p align="center">
-  <img src="assets/demo_images/d1.png" width="220"/>
-  <img src="assets/demo_images/d2.png" width="220"/>
-  <img src="assets/demo_images/d3.png" width="220"/>
+  <img src="assets/demo_images/d1.png" width="650"/>
+  <img src="assets/demo_images/d2.png" width="650"/>
+  <img src="assets/demo_images/d3.png" width="650"/>
 </p>
 
 <p align="center">
-  <img src="assets/demo_images/d4.png" width="220"/>
-  <img src="assets/demo_images/d5.png" width="220"/>
-  <img src="assets/demo_images/d6.png" width="220"/>
+  <img src="assets/demo_images/d4.png" width="650"/>
+  <img src="assets/demo_images/d5.png" width="650"/>
+  <img src="assets/demo_images/d6.png" width="650"/>
 </p>
 
 ---
