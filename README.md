@@ -9,14 +9,14 @@
 </p>
 
 <p align="center">
-  Upload a meal image and get estimated calories, protein, carbs, and fat instantly.
+  Upload an image of your meal and receive the estimated calorie, protein, carbs and fat counts right away.
 </p>
 
 ---
 
 # Overview
 
-YHealth is a Food Recognition and Nutrition Analysis application designed to identify meals from uploaded food images and estimate nutritional macros such as calories, protein, carbohydrates, and fat.
+YHealth is a Food Recognition and Nutrition Analysis Application that recognizes food images and calculates the nutrition macros (calories, protein, carbohydrates, fat) of the meals.
 
 The project combines:
 - HuggingFace Vision Transformer (Food-101)
@@ -26,7 +26,7 @@ The project combines:
 - Lightweight meal heuristics
 - Nutrition macro estimation
 
-The goal of the project is to create a practical and demo-friendly nutrition analysis system while maintaining a lightweight and efficient architecture.
+The aim of the project is to develop a demofriendly and useful nutrition analysis system with a light and efficient architecture.
 
 ---
 
@@ -41,7 +41,7 @@ The goal of the project is to create a practical and demo-friendly nutrition ana
 - Streamlit dashboard UI
 - Docker deployment
 - Lightweight security protections
-- Clean and responsive interface
+A clean and responsive interface.
 
 ---
 
@@ -107,7 +107,7 @@ streamlit run app.py
 
 # Working Demo Images
 
-These sample images can be used to test meal detection and nutrition analysis inside YHealth.
+These are some sample images to test meal detection and nutrition analysis within YHealth.
 
 <p align="center">
   <img src="assets/demo_images/d1.png" width="220"/>
@@ -135,13 +135,13 @@ These sample images can be used to test meal detection and nutrition analysis in
 
 # How It Works
 
-1. User uploads or captures a food image  
+User takes or uploads a food photo.User takes or uploads a food picture.  
 2. Image is sent to the FastAPI backend  
-3. HuggingFace ViT model performs food classification  
-4. Lightweight meal heuristics improve prediction quality  
-5. Nutrition macros are mapped from the nutrition database  
-6. Total calories, protein, carbs, and fat are calculated  
-7. Results are displayed in the Streamlit dashboard and JSON API response  
+The HuggingFace ViT model is used for food classification task.Using HuggingFace ViT model for food classification task.  
+5. The prediction quality is better improved by using lightweight heuristics for the meal.  
+The nutrition macros are mapped from the nutrition database:  
+7. Calories, protein, carbs and fat are totalled.  
+7. Streamlit dashboard and JSON API response will show results.  
 
 ---
 
@@ -151,7 +151,7 @@ These sample images can be used to test meal detection and nutrition analysis in
 |---|---|
 | Backend | FastAPI |
 | Frontend | Streamlit |
-| AI Model | HuggingFace ViT (Food-101) |
+Model | huggingface ViT (Food-101) |
 | Language | Python |
 | Containerization | Docker |
 | Deployment | Render / Railway |
@@ -160,7 +160,7 @@ These sample images can be used to test meal detection and nutrition analysis in
 
 # Security Features
 
-The project includes lightweight security protections suitable for demo and MVP environments.
+The project features light security measures for demo and MVP.
 
 ## Implemented Security Measures
 
@@ -171,7 +171,7 @@ The project includes lightweight security protections suitable for demo and MVP 
 - Lightweight rate limiting
 - Security response headers
 - Sanitized rendering
-- Clean API error handling
+Improved error handling in the API.Better error handling in API.
 
 ---
 
@@ -243,7 +243,7 @@ food-ai/
 
 Deploy using:
 - `render.yaml`
-- Separate frontend and backend services
+- Use a package registry for front-end services.- Implement package registry for front-end services.
 
 ---
 
@@ -263,9 +263,9 @@ API_URL=<backend-public-url>
 
 # Notes
 
-This project uses the HuggingFace Food-101 model as the base classifier.
+The HuggingFace Food-101 model is the base model used in this project.
 
-Lightweight meal heuristics are added to improve practical food recognition and nutrition estimation without retraining large deep learning models.
+Lightweight heuristics of food recognition are incorporated to assist with practical food recognition and nutrition estimation without the need to train big deep learning models.
 
 ---
 
