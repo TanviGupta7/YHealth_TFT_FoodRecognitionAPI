@@ -9,16 +9,17 @@
 </p>
 
 <p align="center">
-  Upload an image of your meal and receive the estimated calorie, protein, carbs and fat counts right away.
+  Upload an image of your meal and instantly receive estimated calories, protein, carbs, and fat values.
 </p>
 
 ---
 
 # Overview
 
-YHealth is a Food Recognition and Nutrition Analysis Application that recognizes food images and calculates the nutrition macros (calories, protein, carbohydrates, fat) of the meals.
+YHealth is a Food Recognition and Nutrition Analysis application designed to identify meals from uploaded food images and estimate nutritional macros such as calories, protein, carbohydrates, and fat.
 
 The project combines:
+
 - HuggingFace Vision Transformer (Food-101)
 - FastAPI backend
 - Streamlit frontend
@@ -26,7 +27,7 @@ The project combines:
 - Lightweight meal heuristics
 - Nutrition macro estimation
 
-The aim of the project is to develop a demofriendly and useful nutrition analysis system with a light and efficient architecture.
+The goal of the project is to create a practical, demo-friendly nutrition analysis system while maintaining a lightweight and efficient architecture.
 
 ---
 
@@ -41,7 +42,7 @@ The aim of the project is to develop a demofriendly and useful nutrition analysi
 - Streamlit dashboard UI
 - Docker deployment
 - Lightweight security protections
-A clean and responsive interface.
+- Clean and responsive interface
 
 ---
 
@@ -53,13 +54,13 @@ A clean and responsive interface.
 docker compose up --build
 ```
 
-Frontend:
+### Frontend
 
 ```text
 http://localhost:8501
 ```
 
-Backend API:
+### Backend API
 
 ```text
 http://localhost:8000/docs
@@ -92,7 +93,7 @@ streamlit run app.py
 ## Main Interface
 
 <p align="center">
-  <img src="assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png" width="220"/>
+  <img src="assets/screenshots/paneer%20butter%20masala%20with%20jeera%20rice.png" width="850"/>
 </p>
 
 ---
@@ -100,14 +101,14 @@ streamlit run app.py
 ## Food Detection Example
 
 <p align="center">
-  <img src="assets/screenshots/pizza%20img.jpg" width="220"/>
+  <img src="assets/screenshots/pizza%20img.jpg" width="650"/>
 </p>
 
 ---
 
 # Working Demo Images
 
-These are some sample images to test meal detection and nutrition analysis within YHealth.
+These sample images can be used to test meal detection and nutrition analysis inside YHealth.
 
 <p align="center">
   <img src="assets/demo_images/d1.png" width="220"/>
@@ -123,25 +124,23 @@ These are some sample images to test meal detection and nutrition analysis withi
 
 ---
 
----
-
 # Demo Video
 
 ## Watch Application Demo
 
-[▶ Watch Demo Video](assets/videos/DemoAPP_FoodRecognitionAPI.mp4)
+[▶ Watch Demo Video](assets/videos/demo_video.mp4)
 
 ---
 
 # How It Works
 
-User takes or uploads a food photo.User takes or uploads a food picture.  
-2. Image is sent to the FastAPI backend  
-The HuggingFace ViT model is used for food classification task.Using HuggingFace ViT model for food classification task.  
-5. The prediction quality is better improved by using lightweight heuristics for the meal.  
-The nutrition macros are mapped from the nutrition database:  
-7. Calories, protein, carbs and fat are totalled.  
-7. Streamlit dashboard and JSON API response will show results.  
+1. User uploads or captures a food image  
+2. The image is sent to the FastAPI backend  
+3. The HuggingFace ViT model performs food classification  
+4. Lightweight meal heuristics improve prediction quality  
+5. Nutrition macros are mapped from the nutrition database  
+6. Total calories, protein, carbs, and fat are calculated  
+7. Results are displayed in the Streamlit dashboard and JSON API response  
 
 ---
 
@@ -151,7 +150,7 @@ The nutrition macros are mapped from the nutrition database:
 |---|---|
 | Backend | FastAPI |
 | Frontend | Streamlit |
-Model | huggingface ViT (Food-101) |
+| AI Model | HuggingFace ViT (Food-101) |
 | Language | Python |
 | Containerization | Docker |
 | Deployment | Render / Railway |
@@ -160,7 +159,7 @@ Model | huggingface ViT (Food-101) |
 
 # Security Features
 
-The project features light security measures for demo and MVP.
+The project includes lightweight security mechanisms suitable for demo and MVP environments.
 
 ## Implemented Security Measures
 
@@ -171,7 +170,7 @@ The project features light security measures for demo and MVP.
 - Lightweight rate limiting
 - Security response headers
 - Sanitized rendering
-Improved error handling in the API.Better error handling in API.
+- Improved API error handling
 
 ---
 
@@ -237,15 +236,151 @@ food-ai/
 
 ---
 
+# Backend API Documentation
+
+The backend of YHealth is built using FastAPI and provides REST API endpoints for food image analysis, nutrition estimation, health checks, and system communication.
+
+The backend automatically generates interactive API documentation using Swagger UI and ReDoc.
+
+---
+
+# API Documentation URLs
+
+## Swagger UI
+
+```text
+http://localhost:8000/docs
+```
+
+Interactive API testing interface for developers.
+
+### Features
+
+- Upload food images directly
+- Test API endpoints
+- View JSON responses
+- Inspect request/response schemas
+- Debug backend communication
+
+---
+
+## ReDoc Documentation
+
+```text
+http://localhost:8000/redoc
+```
+
+Clean developer-friendly API reference documentation.
+
+---
+
+# Base URL
+
+```text
+http://localhost:8000
+```
+
+---
+
+# Available API Endpoints
+
+| Method | Endpoint | Purpose |
+|---|---|---|
+| POST | `/analyze` | Upload food image and receive nutrition analysis |
+| GET | `/health` | Check backend and model health status |
+| GET | `/docs` | Swagger API documentation |
+| GET | `/redoc` | ReDoc API documentation |
+
+---
+
+# POST /analyze
+
+Uploads a food image to the backend for AI-assisted food recognition and nutrition analysis.
+
+## Request Type
+
+```http
+POST /analyze
+Content-Type: multipart/form-data
+```
+
+## Input
+
+| Parameter | Type | Description |
+|---|---|---|
+| file | Image File | Food image uploaded by user |
+
+### Supported Formats
+
+- JPG
+- JPEG
+- PNG
+- WEBP
+
+---
+
+# Backend Workflow
+
+1. Image validation is performed  
+2. Food image is processed using the HuggingFace Food-101 Vision Transformer model  
+3. Meal heuristics improve recognition quality  
+4. Nutrition values are mapped from the nutrition database  
+5. Total calories and macros are calculated  
+6. JSON response is returned to the frontend  
+
+---
+
+# GET /health
+
+Checks whether the backend API and AI model are active.
+
+## Request
+
+```http
+GET /health
+```
+
+## Example Response
+
+```json
+{
+  "status": "ok",
+  "model_loaded": true
+}
+```
+
+---
+
+# Backend Architecture
+
+| File | Purpose |
+|---|---|
+| `main.py` | FastAPI routes and API server |
+| `inference.py` | Food classification logic |
+| `meal_logic.py` | Meal heuristics and post-processing |
+| `nutrition_data.py` | Nutrition mapping database |
+| `security.py` | Upload validation and security handling |
+
+---
+
+# AI Model Information
+
+| Component | Technology |
+|---|---|
+| Base Model | HuggingFace Food-101 |
+| Framework | Transformers |
+| Inference | Python |
+| API Framework | FastAPI |
+
+---
+
 # Deployment
 
 ## Render
 
 Deploy using:
 - `render.yaml`
-- Use a package registry for front-end services.- Implement package registry for front-end services.
-
----
+- Separate frontend and backend services
 
 ## Railway
 
@@ -261,11 +396,40 @@ API_URL=<backend-public-url>
 
 ---
 
+# Running Backend Locally
+
+## Install Dependencies
+
+```bash
+cd backend
+pip install -r requirements.txt
+```
+
+## Start Backend Server
+
+```bash
+uvicorn main:app --reload --port 8000
+```
+
+---
+
+# Backend Access
+
+| Service | URL |
+|---|---|
+| API Server | http://localhost:8000 |
+| Swagger Docs | http://localhost:8000/docs |
+| ReDoc Docs | http://localhost:8000/redoc |
+
+---
+
 # Notes
 
-The HuggingFace Food-101 model is the base model used in this project.
-
-Lightweight heuristics of food recognition are incorporated to assist with practical food recognition and nutrition estimation without the need to train big deep learning models.
+- The backend supports local model inference
+- Internet connection is not required for local inference
+- Food recognition quality depends on Food-101 model capability
+- Lightweight heuristics improve practical meal recognition
+- The system is optimized for demonstration and MVP deployment
 
 ---
 
