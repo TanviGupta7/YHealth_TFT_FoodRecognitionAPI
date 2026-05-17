@@ -1,8 +1,5 @@
-# YHealth
+# A YHealth Product
 
-<h1 align="center">YHealth</h1>
-
-<h4 align="center">by Think Future Technologies</h4>
 
 <p align="center">
   Your Food & Nutrition Analyzer
@@ -30,6 +27,8 @@ The project combines:
 The goal of the project is to create a practical, demo-friendly nutrition analysis system while maintaining a lightweight and efficient architecture.
 
 ---
+<img width="1536" height="1024" alt="ChatGPT Image May 18, 2026, 05_13_17 AM" src="https://github.com/user-attachments/assets/127e6a90-983f-47ad-95af-017407a8e107" />
+
 
 # Features
 
@@ -111,15 +110,17 @@ streamlit run app.py
 These sample images can be used to test meal detection and nutrition analysis inside YHealth.
 
 <p align="center">
-  <img src="assets/demo_images/d1.png" width="650"/>
-  <img src="assets/demo_images/d2.png" width="650"/>
-  <img src="assets/demo_images/d3.png" width="650"/>
+  <img src="assets/demo_images/d1.png" width="700"/>
+  <img src="assets/demo_images/d2.png" width="700"/>
+  <img src="assets/demo_images/d3.png" width="700"/>
 </p>
 
 <p align="center">
-  <img src="assets/demo_images/d4.png" width="650"/>
-  <img src="assets/demo_images/d5.png" width="650"/>
-  <img src="assets/demo_images/d6.png" width="650"/>
+  <img src="assets/demo_images/d4.png" width="700"/>
+  <img src="assets/demo_images/d5.png" width="700"/>
+  <img src="assets/demo_images/d6.png" width="700"/>
+  <img width="700" height="700" alt="Screenshot 2026-05-18 024123" src="https://github.com/user-attachments/assets/9526fb91-7cac-4b95-b4c5-b7d3ebc121a0" />
+
 </p>
 
 ---
